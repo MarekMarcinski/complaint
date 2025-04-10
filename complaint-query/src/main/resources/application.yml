@@ -1,0 +1,24 @@
+spring:
+  application.name: complaint-query
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:mysql://localhost:3306/complaint?createDatabaseIfNotExist=true
+    username: root
+    password: rootpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  kafka:
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
+    consumer:
+      bootstrap-servers: localhost:29092
+      group-id: complaint-consumer
+      auto-offset-reset: earliest
+      properties:
+        spring.json:
+          trusted.packages: "*"
+server:
+  port: 2137

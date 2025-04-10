@@ -1,0 +1,15 @@
+spring:
+  application.name: complaint-command
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: complaint
+      username: root
+      password: rootpassword
+      authentication-database: admin
+  kafka:
+    producer:
+      bootstrap-servers: localhost:29092
+server:
+  port: 2138
