@@ -1,5 +1,7 @@
-package com.marcinski.complaintcommand.domain;
+package com.marcinski.complaintcommand;
 
+import com.marcinski.complaintcommand.domain.BaseEvent;
+import com.marcinski.complaintcommand.domain.EventModel;
 import com.marcinski.complaintcommand.domain.command.CreateComplaintCommand;
 import com.marcinski.complaintcommand.domain.command.EditComplaintContentsCommand;
 

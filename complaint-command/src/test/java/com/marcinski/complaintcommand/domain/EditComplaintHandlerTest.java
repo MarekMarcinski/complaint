@@ -9,7 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
-import static com.marcinski.complaintcommand.domain.TestHelper.buildEditCommand;
+import static com.marcinski.complaintcommand.TestHelper.buildEditCommand;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

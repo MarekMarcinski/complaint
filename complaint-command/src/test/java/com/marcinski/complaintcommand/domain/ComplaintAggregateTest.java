@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import static com.marcinski.complaintcommand.domain.TestHelper.buildCreateCommand;
-import static com.marcinski.complaintcommand.domain.TestHelper.buildEditCommand;
+import static com.marcinski.complaintcommand.TestHelper.buildCreateCommand;
+import static com.marcinski.complaintcommand.TestHelper.buildEditCommand;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ComplaintAggregateTest {

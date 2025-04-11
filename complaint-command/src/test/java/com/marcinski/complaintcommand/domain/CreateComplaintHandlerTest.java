@@ -7,7 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.marcinski.complaintcommand.domain.TestHelper.buildCreateCommand;
+import static com.marcinski.complaintcommand.TestHelper.buildCreateCommand;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 

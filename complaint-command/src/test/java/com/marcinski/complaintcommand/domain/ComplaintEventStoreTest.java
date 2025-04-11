@@ -1,5 +1,6 @@
 package com.marcinski.complaintcommand.domain;
 
+import com.marcinski.complaintcommand.TestHelper;
 import com.marcinski.complaintcommand.domain.exceptions.AggregateNotFoundException;
 import com.marcinski.complaintcommand.domain.exceptions.ConcurrencyException;
 import org.junit.jupiter.api.BeforeEach;

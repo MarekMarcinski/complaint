@@ -1,5 +1,6 @@
 package com.marcinski.complaintcommand.domain;
 
+import com.marcinski.complaintcommand.TestHelper;
 import com.marcinski.complaintcommand.domain.command.CreateComplaintCommand;
 import com.marcinski.complaintcommand.domain.command.EditComplaintContentsCommand;
 import org.junit.jupiter.api.Test;
