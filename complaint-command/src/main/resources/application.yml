@@ -11,5 +11,7 @@ spring:
   kafka:
     producer:
       bootstrap-servers: localhost:29092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.marcinski.complaintcommand.infrastructure.config.MyKafkaValueSerializer
 server:
   port: 2138

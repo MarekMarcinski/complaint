@@ -16,12 +16,12 @@ class EventModelMapperTest {
         var eventModel = TestHelper.buildEventEditModel();
         var map = mapper.map(eventModel);
         assertNotNull(map);
-        assertNotNull(map.getId());
-        assertNotNull(map.getTimestamp());
-        assertNotNull(map.getAggregateIdentifier());
-        assertEquals("Type", map.getAggregateType());
-        assertEquals(1, map.getVersion());
-        assertNotNull(map.getEventData());
+        assertEquals(eventModel.getId(), map.getId());
+        assertEquals(eventModel.getTimestamp(), map.getTimestamp());
+        assertEquals(eventModel.getAggregateIdentifier(), map.getAggregateIdentifier());
+        assertEquals(eventModel.getAggregateType(), map.getAggregateType());
+        assertEquals(eventModel.getVersion(), map.getVersion());
+        assertEquals(eventModel.getEventData(), map.getEventData());
     }
 
     @Test
@@ -29,11 +29,11 @@ class EventModelMapperTest {
         var eventModel = TestHelper.buildEventEditModelDocument();
         var map = mapper.map(eventModel);
         assertNotNull(map);
-        assertNotNull(map.getId());
-        assertNotNull(map.getTimestamp());
-        assertNotNull(map.getAggregateIdentifier());
-        assertEquals("Type", map.getAggregateType());
-        assertEquals(1, map.getVersion());
-        assertNotNull(map.getEventData());
+        assertEquals(eventModel.getId(), map.getId());
+        assertEquals(eventModel.getTimestamp(), map.getTimestamp());
+        assertEquals(eventModel.getAggregateIdentifier(), map.getAggregateIdentifier());
+        assertEquals(eventModel.getAggregateType(), map.getAggregateType());
+        assertEquals(eventModel.getVersion(), map.getVersion());
+        assertEquals(eventModel.getEventData(), map.getEventData());
     }
 }

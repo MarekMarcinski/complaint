@@ -1,5 +1,7 @@
 package com.marcinski.complaintcommand;
 
+import com.marcinski.complaintcommand.api.dto.CreateComplaintRequest;
+import com.marcinski.complaintcommand.api.dto.EditComplaintRequest;
 import com.marcinski.complaintcommand.domain.BaseEvent;
 import com.marcinski.complaintcommand.domain.ComplaintContentsChangedEvent;
 import com.marcinski.complaintcommand.domain.ComplaintCreatedEvent;
@@ -88,5 +90,19 @@ public class TestHelper {
                 .eventType("eventType")
                 .eventData(event)
                 .build();
+    }
+
+    public static EditComplaintRequest buildEditComplaintRequest() {
+        var editComplaintRequest = new EditComplaintRequest();
+        editComplaintRequest.setContents("Foo");
+        return editComplaintRequest;
+    }
+
+    public static CreateComplaintRequest buildCreateComplaintRequest() {
+        var createComplaintRequest = new CreateComplaintRequest();
+        createComplaintRequest.setReporterName("Empik");
+        createComplaintRequest.setContents("Bar");
+        createComplaintRequest.setComplaintProductId(UUID.randomUUID().toString());
+        return createComplaintRequest;
     }
 }
