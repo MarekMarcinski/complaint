@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Getter
 @SuperBuilder
-class ComplaintCreatedEvent extends BaseEvent {
+public class ComplaintCreatedEvent extends BaseEvent {
     private UUID complaintProductId;
     private String contents;
     private LocalDate createdDate;

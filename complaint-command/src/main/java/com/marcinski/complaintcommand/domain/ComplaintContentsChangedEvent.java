@@ -5,6 +5,6 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @SuperBuilder
-class ComplaintContentsChangedEvent extends BaseEvent {
+public class ComplaintContentsChangedEvent extends BaseEvent {
     private String contents;
 }
