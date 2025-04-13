@@ -25,7 +25,7 @@ class ComplaintEventStore {
         if (expectedVersion != -1 && eventStream.get(eventStream.size() - 1).getVersion() != expectedVersion) {
             throw new ConcurrencyException("");
         }
-        var version = expectedVersion;
+        int version = getVersion(expectedVersion, eventStream);
         for (var event : events) {
             version++;
             event.setVersion(version);
@@ -42,6 +42,16 @@ class ComplaintEventStore {
                 eventProducer.produce(event.getClass().getSimpleName(), event);
             }
         }
+    }
+
+    private static int getVersion(int expectedVersion, List<EventModel> eventStream) {
+        int version;
+        if (eventStream.isEmpty()) {
+            version = expectedVersion;
+        } else {
+            version = eventStream.getLast().getVersion();
+        }
+        return version;
     }
 
     List<BaseEvent> getEvents(String aggregateId) {
