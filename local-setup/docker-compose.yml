@@ -1,0 +1,70 @@
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=rootpassword
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=complaint
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=userpassword
+    volumes:
+      - mysql_data:/var/lib/mysql
+  complaint-command:
+    build:
+      context: ../complaint-command # This assumes Dockerfile is in the root of your project
+    ports:
+      - "2138:2138"
+    depends_on:
+      - kafka
+    environment:
+      SPRING_DATA_MONGODB_HOST: mongodb
+      SPRING_KAFKA_PRODUCER_BOOTSTRAP_SERVERS: kafka:9092
+  complaint-query:
+    build:
+      context: ../complaint-query # This assumes Dockerfile is in the root of your project
+    ports:
+      - "2137:2137"
+    depends_on:
+      - mysql
+      - complaint-command
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/complaint?createDatabaseIfNotExist=true
+      SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS: kafka:9092
+
+volumes:
+  mongodb_data:
+  mysql_data:
