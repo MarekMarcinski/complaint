@@ -28,6 +28,7 @@ public abstract class AggregateRoot {
     protected void applyChange(BaseEvent event, Boolean isNewEvent) {
         try {
             var method = getClass().getDeclaredMethod("apply", event.getClass());
+            log.debug("Aggregation handle method: {}", method);
             method.setAccessible(true);
             method.invoke(this, event);
         } catch (NoSuchMethodException e) {

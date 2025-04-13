@@ -28,6 +28,7 @@ public class CreateComplaintController {
                                                         HttpServletRequest httpServletRequest) {
         var createComplaintCommand = commandMapper.map(createComplaintRequest, getClientIp(httpServletRequest));
 
+        log.info("Handle a request to create a new complaint. Request: {}", createComplaintCommand);
         String id = complaintFacade.handle(createComplaintCommand);
         return new ResponseEntity<>(new BaseResponse(id), HttpStatus.CREATED);
     }

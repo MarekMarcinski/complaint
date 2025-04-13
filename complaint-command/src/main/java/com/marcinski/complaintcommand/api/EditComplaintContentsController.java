@@ -22,6 +22,7 @@ public class EditComplaintContentsController {
     @PutMapping("/{id}")
     public ResponseEntity<BaseResponse> restoreReadDb(@PathVariable(value = "id") String id,
                                                       @Valid @RequestBody EditComplaintRequest editComplaintRequest) {
+        log.info("Handle a request to edit existing a complaint with iq: {}. Request: {}", id, editComplaintRequest);
         var command = commandMapper.map(editComplaintRequest, id);
         complaintFacade.handle(command);
         return new ResponseEntity<>(new BaseResponse(id), HttpStatus.ACCEPTED);

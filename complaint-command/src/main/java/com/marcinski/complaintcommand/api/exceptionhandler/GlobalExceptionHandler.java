@@ -56,6 +56,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .toList();
 
         var apiError = ApiError.of("Wrong body", validationMessages);
+        log.warn(ex.getMessage());
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
 
