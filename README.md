@@ -10,6 +10,26 @@ The service implements the **Command Query Responsibility Segregation (CQRS)** p
 1.  **`complaint-command`**: Handles write operations (creating/editing complaints) and stores events.
 2.  **`complaint-query`**: Handles read operations (retrieving complaints) and serves data optimized for querying.
 
+## Live Demo
+
+A live demo of this application is available at:
+
+**Base URL:** `https://complaint.marcinski.ovh/`
+
+**How it works:**
+A reverse proxy is configured at the base URL. It routes incoming HTTP requests to the appropriate backend microservice based on the HTTP method used:
+* **`POST` / `PUT` requests** (writes) are automatically forwarded to the `complaint-command` service.
+* **`GET` requests** (reads) are automatically forwarded to the `complaint-query` service.
+
+**Example API Calls via Demo URL:**
+* Create a complaint: `POST http://complaint.marcinski.ovh/api/v1/complaints` (with request body)
+* Edit a complaint: `PUT http://complaint.marcinski.ovh/api/v1/complaints/{id}` (with request body)
+* Get all complaints: `GET http://complaint.marcinski.ovh/api/v1/complaints`
+* Get a specific complaint: `GET http://complaint.marcinski.ovh/api/v1/complaints/{id}`
+
+*For sample request bodies required for the `POST` and `PUT` operations, please see the [Microservice Details](#microservice-details) section below.*
+
+
 ## Core Features
 
 * **Add New Complaints:** Submit new product complaints.
