@@ -17,8 +17,13 @@ spring:
       bootstrap-servers: localhost:29092
       group-id: complaint-consumer
       auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.marcinski.complaintquery.infrastructure.config.MultiTypeKafkaDeserializer
       properties:
         spring.json:
           trusted.packages: "*"
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/changelog-master.xml
 server:
   port: 2137

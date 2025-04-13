@@ -4,10 +4,12 @@ import com.marcinski.complaintquery.domain.event.ComplaintContentsChangedEvent;
 import com.marcinski.complaintquery.domain.event.ComplaintCreatedEvent;
 import com.marcinski.complaintquery.domain.geo.CityLocator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 @RequiredArgsConstructor
 public class ComplaintEventHandler {
 
